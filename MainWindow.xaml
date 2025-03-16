@@ -5,8 +5,76 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OOPaint"
         mc:Ignorable="d"
-        Title="MainWindow" Height="550" Width="525">
+        Title="OOPaint" Height="550" Width="800">
+    
+    <Window.Resources>
+        <Style x:Key="ChooseColorButton">
+            <Setter Property="Control.Width" Value="50" />
+            <Setter Property="Control.Height" Value="20" />
+            <Setter Property="Control.Background" Value="Black" />
+            <Setter Property="Control.Margin" Value="5" />
+            <Setter Property="Control.HorizontalAlignment" Value="Left" />
+        </Style>
+    </Window.Resources>
+    
     <DockPanel>
+        <!-- Главное меню -->
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Файл">
+                <MenuItem Header="Открыть" />
+                <MenuItem Header="Сохранить" />
+                <MenuItem Header="Сохранить как" />
+            </MenuItem>
+            <MenuItem Header="Изменить">
+                <MenuItem Header="Отмена" InputGestureText="Ctrl+Z"/>
+                <MenuItem Header="Повтор" InputGestureText="Ctrl+Alt+Z"/>
+            </MenuItem>
+        </Menu>
+        
+        <StackPanel DockPanel.Dock="Left" Width="180" Background="LightGray">
+            <ComboBox Name="ToolComboBox" SelectedIndex="0" Margin="5">
+                <ComboBoxItem>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="res/line_tool.png" Margin="0,0,10,0"/>
+                        <TextBlock>Отрезок</TextBlock>
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="res/polyline_tool.png" Margin="0,0,10,0"/>
+                        <TextBlock>Ломаная</TextBlock>
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="res/rectangle_tool.png" Margin="0,0,10,0"/>
+                        <TextBlock>Прямоугольник</TextBlock>
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="res/polygon_tool.png" Margin="0,0,10,0"/>
+                        <TextBlock>Многоугольник</TextBlock>
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="res/oval_tool.png" Margin="0,0,10,0"/>
+                        <TextBlock>Эллипс</TextBlock>
+                    </StackPanel>
+                </ComboBoxItem>
+            </ComboBox>
+            
+            <TextBlock Text="Толщина линии" FontWeight="Bold" Margin="10"/>
+            <Slider Value="3" Minimum="1" Maximum="15" Margin="5,0,10,0" Name="LineWidthSlider" AutoToolTipPlacement="TopLeft" AutoToolTipPrecision="0"></Slider>
+            
+            <TextBlock Text="Цвет обводки" FontWeight="Bold" Margin="10"/>
+            <Button Name="StrokeColorButton" Style="{StaticResource ChooseColorButton}" />
 
+            <TextBlock Text="Цвет заливки" FontWeight="Bold" Margin="10"/>
+            <Button Name="FillColorButton" Style="{StaticResource ChooseColorButton}" />
+        </StackPanel>
+        
+        <Canvas Name="DrawCanvas" Background="White" ClipToBounds="True"/>
     </DockPanel>
 </Window>

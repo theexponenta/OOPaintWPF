@@ -81,5 +81,12 @@
     <ItemGroup>
         <None Include="App.config"/>
     </ItemGroup>
+    <ItemGroup>
+      <Resource Include="res\line_tool.png" />
+      <Resource Include="res\oval_tool.png" />
+      <Resource Include="res\polygon_tool.png" />
+      <Resource Include="res\polyline_tool.png" />
+      <Resource Include="res\rectangle_tool.png" />
+    </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
 </Project>
