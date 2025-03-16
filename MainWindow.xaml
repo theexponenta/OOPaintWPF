@@ -75,6 +75,7 @@
             <Button Name="FillColorButton" Style="{StaticResource ChooseColorButton}" />
         </StackPanel>
         
-        <Canvas Name="DrawCanvas" Background="White" ClipToBounds="True"/>
+       <local:CustomCanvas x:Name="DrawCanvas"/>
+        <!--<Canvas Name="DrawCanvas" Background="White" ClipToBounds="True" />-->
     </DockPanel>
 </Window>
