@@ -1,22 +1,25 @@
 ﻿using System;
-using System.Drawing;
 using System.Threading;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using OOPaint.Shapes;
+using System.Windows.Input;
 using OOPaint.Tools;
 
 
 namespace OOPaint
 {
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Forms;
+    using System.Windows.Input;
+    using System.Windows.Media;
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow
     {
+
         private OOPaintApp app;
         
         public MainWindow()
@@ -39,7 +42,7 @@ namespace OOPaint
             app.DispatchEvent(EventType.MOUSEDOWN, sender, e);
         }
 
-        public void Canvas_MouseMove(object sender, MouseEventArgs e)
+        public void Canvas_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
         {
             app.DispatchEvent(EventType.MOUSEMOVE, sender, e);
         }
@@ -63,9 +66,46 @@ namespace OOPaint
             }
         }
 
-        private void OnKeyDown(object sender, KeyEventArgs e)
+        private void OnKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             app.DispatchEvent(EventType.KEYDOWN, sender, e);
+        }
+
+        private void LineWidthSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (app != null)
+            {
+                app.SelectedLineWidth = (int)LineWidthSlider.Value;
+            }
+            
+        }
+
+        private Color SelectColor(Color fallbackColor)
+        {
+            ColorDialog dialog = new ColorDialog();
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                return Color.FromArgb(dialog.Color.A, dialog.Color.R, dialog.Color.G, dialog.Color.B);
+            }
+
+            return fallbackColor;
+        }
+
+        private void StrokeColorButton_Click(object sender, RoutedEventArgs e)
+        {
+            Color color = SelectColor(((SolidColorBrush)StrokeColorButton.Background).Color);
+            Brush brush = new SolidColorBrush(color);
+            StrokeColorButton.Background = brush;
+            app.SelectedStrokeColor = color;
+        }
+
+
+        private void FillColorButton_Click(object sender, RoutedEventArgs e)
+        {
+            Color color = SelectColor(((SolidColorBrush)FillColorButton.Background).Color);
+            Brush brush = new SolidColorBrush(color);
+            FillColorButton.Background = brush;
+            app.SelectedFillColor = color;
         }
     }
 }

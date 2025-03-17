@@ -66,13 +66,13 @@
             </ComboBox>
             
             <TextBlock Text="Толщина линии" FontWeight="Bold" Margin="10"/>
-            <Slider Value="3" Minimum="1" Maximum="15" Margin="5,0,10,0" Name="LineWidthSlider" AutoToolTipPlacement="TopLeft" AutoToolTipPrecision="0"></Slider>
+            <Slider Value="3" Minimum="1" Maximum="15" Margin="5,0,10,0" Name="LineWidthSlider" AutoToolTipPlacement="TopLeft" AutoToolTipPrecision="0" ValueChanged="LineWidthSlider_ValueChanged"></Slider>
             
             <TextBlock Text="Цвет обводки" FontWeight="Bold" Margin="10"/>
-            <Button Name="StrokeColorButton" Style="{StaticResource ChooseColorButton}" />
+            <Button Name="StrokeColorButton" Style="{StaticResource ChooseColorButton}"  Click="StrokeColorButton_Click"/>
 
             <TextBlock Text="Цвет заливки" FontWeight="Bold" Margin="10"/>
-            <Button Name="FillColorButton" Style="{StaticResource ChooseColorButton}" />
+            <Button Name="FillColorButton" Style="{StaticResource ChooseColorButton}" Click="FillColorButton_Click"/>
         </StackPanel>
 
         <local:CustomCanvas x:Name="DrawCanvas" MouseDown="Canvas_MouseDown" MouseUp="Canvas_MouseUp" MouseMove="Canvas_MouseMove"/>
