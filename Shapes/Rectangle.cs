@@ -7,15 +7,14 @@ namespace OOPaint.Shapes
 {
     public class Rectangle : Shape
     {
-        float x1, y1, x2, y2;
+        public Point TopLeft {get; set;}
+        public Point BottomRight {get; set;}
 
-        public Rectangle(Color strokeColor, Color fillColor, int lineWidth, int x1, int y1, int x2, int y2) 
+        public Rectangle(Color strokeColor, Color fillColor, int lineWidth, Point topLeft, Point bottomRight) 
             : base(strokeColor, fillColor, lineWidth)
         {
-            this.x1 = x1;
-            this.y1 = y1;
-            this.x2 = x2;
-            this.y2 = y2;
+            TopLeft = topLeft;
+            BottomRight = bottomRight;
         }
 
         public override void Draw(DrawingContext context)
@@ -23,7 +22,7 @@ namespace OOPaint.Shapes
             Pen pen = new Pen(new SolidColorBrush(strokeColor), this.lineWidth);
             Brush brush = new SolidColorBrush(this.fillColor);
             
-            context.DrawRectangle(brush, pen, new Rect(this.x1, this.y1, this.x2, this.y2));
+            context.DrawRectangle(brush, pen, new Rect(TopLeft.X, TopLeft.Y, Math.Abs(BottomRight.X - TopLeft.X),  Math.Abs(BottomRight.Y - TopLeft.Y)));
         }
 
         public override byte[] Serialize()

@@ -7,20 +7,20 @@ namespace OOPaint.Shapes
 {
     public class Line : Shape
     {
-        Point point1;
-        Point point2;
+        public Point Point1 { get; set; }
+        public Point Point2  { get; set; }
 
         public Line(Color color, int lineWidth, Point point1, Point point2) : base(color, Colors.Transparent, lineWidth)
         {
-            this.point1 = point1;
-            this.point2 = point2;
+            this.Point1 = point1;
+            this.Point2 = point2;
         }
 
         public override void Draw(DrawingContext context)
         {
             Brush brush = new SolidColorBrush(this.strokeColor);
             Pen pen = new Pen(brush, this.lineWidth);
-            context.DrawLine(pen, point1, point2);
+            context.DrawLine(pen, Point1, Point2);
         }
 
         public override byte[] Serialize()

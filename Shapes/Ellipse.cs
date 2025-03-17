@@ -7,15 +7,14 @@ namespace OOPaint.Shapes
 {
     public class Ellipse : Shape
     {
-        double x, y, width, height;
+        public Point TopLeft { get; set; }
+        public Point BottomRight { get; set; }
 
-        public Ellipse(Color strokeColor, Color fillColor, int lineWidth, int x, int y, int width, int height) 
+        public Ellipse(Color strokeColor, Color fillColor, int lineWidth, Point topLeft, Point bottomRight)
             : base(strokeColor, fillColor, lineWidth)
         {
-            this.x = x;
-            this.y = y;
-            this.width = width;
-            this.height = height;
+            TopLeft = topLeft;
+            BottomRight = bottomRight;
         }
 
         public override void Draw(DrawingContext context)
@@ -23,8 +22,8 @@ namespace OOPaint.Shapes
             Brush brush = new SolidColorBrush(this.fillColor);
             Pen pen = new Pen(new SolidColorBrush(this.strokeColor), this.lineWidth);
             
-            Point center = new Point(this.x + this.width / 2, this.y + this.height / 2);
-            context.DrawEllipse(brush, pen, center, width, height);
+            Point center = new Point((TopLeft.X + BottomRight.X) / 2, (TopLeft.Y + BottomRight.Y) / 2);
+            context.DrawEllipse(brush, pen, center, Math.Abs(BottomRight.X - TopLeft.X) / 2, Math.Abs(BottomRight.Y - TopLeft.Y) / 2);
         }
 
         public override byte[] Serialize()

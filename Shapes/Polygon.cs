@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Media;
 
@@ -7,11 +8,13 @@ namespace OOPaint.Shapes
 {
     public class Polygon : Shape
     {
-        Point[] points;
+        public List<Point> Points { get; }
+        public bool IsCompleted { get; set; }
 
-        public Polygon(Color strokeColor, Color fillColor, int lineWidth, Point[] points) : base(strokeColor, fillColor, lineWidth)
+        public Polygon(Color strokeColor, Color fillColor, int lineWidth) : base(strokeColor, fillColor, lineWidth)
         {
-            this.points = points;
+            this.Points = new List<Point>();
+            IsCompleted = false;
         }
 
         public override void Draw(DrawingContext context)
@@ -22,8 +25,8 @@ namespace OOPaint.Shapes
             StreamGeometry geometry = new StreamGeometry();
             using (StreamGeometryContext ctx = geometry.Open())
             {
-                ctx.BeginFigure(points[0], true, true);
-                ctx.PolyLineTo(points, true, true);
+                ctx.BeginFigure(Points[0], true, IsCompleted);
+                ctx.PolyLineTo(Points, true, true);
             }
             
             context.DrawGeometry(brush, pen, geometry);

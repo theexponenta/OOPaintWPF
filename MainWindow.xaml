@@ -17,7 +17,7 @@
         </Style>
     </Window.Resources>
     
-    <DockPanel>
+    <DockPanel KeyDown="OnKeyDown">
         <!-- Главное меню -->
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Файл">
@@ -32,33 +32,33 @@
         </Menu>
         
         <StackPanel DockPanel.Dock="Left" Width="180" Background="LightGray">
-            <ComboBox Name="ToolComboBox" SelectedIndex="0" Margin="5">
-                <ComboBoxItem>
+            <ComboBox Name="ToolComboBox" SelectedIndex="0" Margin="5" SelectionChanged="ToolComboBox_OnSelectionChanged">
+                <ComboBoxItem Tag="LineTool">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="res/line_tool.png" Margin="0,0,10,0"/>
                         <TextBlock>Отрезок</TextBlock>
                     </StackPanel>
                 </ComboBoxItem>
-                <ComboBoxItem>
+                <ComboBoxItem Tag="PolylineTool">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="res/polyline_tool.png" Margin="0,0,10,0"/>
                         <TextBlock>Ломаная</TextBlock>
                     </StackPanel>
                 </ComboBoxItem>
-                <ComboBoxItem>
+                <ComboBoxItem Tag="RectangleTool">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="res/rectangle_tool.png" Margin="0,0,10,0"/>
                         <TextBlock>Прямоугольник</TextBlock>
                     </StackPanel>
                 </ComboBoxItem>
                 <ComboBoxItem>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" Tag="PolygonTool">
                         <Image Source="res/polygon_tool.png" Margin="0,0,10,0"/>
                         <TextBlock>Многоугольник</TextBlock>
                     </StackPanel>
                 </ComboBoxItem>
                 <ComboBoxItem>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" Tag="EllipseTool">
                         <Image Source="res/oval_tool.png" Margin="0,0,10,0"/>
                         <TextBlock>Эллипс</TextBlock>
                     </StackPanel>
@@ -74,8 +74,7 @@
             <TextBlock Text="Цвет заливки" FontWeight="Bold" Margin="10"/>
             <Button Name="FillColorButton" Style="{StaticResource ChooseColorButton}" />
         </StackPanel>
-        
-       <local:CustomCanvas x:Name="DrawCanvas"/>
-        <!--<Canvas Name="DrawCanvas" Background="White" ClipToBounds="True" />-->
+
+        <local:CustomCanvas x:Name="DrawCanvas" MouseDown="Canvas_MouseDown" MouseUp="Canvas_MouseUp" MouseMove="Canvas_MouseMove"/>
     </DockPanel>
 </Window>

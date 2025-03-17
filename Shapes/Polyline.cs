@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Media;
 
@@ -7,11 +8,11 @@ namespace OOPaint.Shapes
 {
     public class Polyline: Shape
     {
-        Point[] points;
+        public List<Point> Points { get; }
 
-        public Polyline(Color strokeColor, Color fillColor, int lineWidth, Point[] points) : base(strokeColor, fillColor, lineWidth)
+        public Polyline(Color color, int lineWidth) : base(color, Colors.Transparent, lineWidth)
         {
-            this.points = points;
+            this.Points = new List<Point>();
         }
 
         public override void Draw(DrawingContext context)
@@ -22,8 +23,8 @@ namespace OOPaint.Shapes
             StreamGeometry geometry = new StreamGeometry();
             using (StreamGeometryContext ctx = geometry.Open())
             {
-                ctx.BeginFigure(points[0], true, true);
-                ctx.PolyLineTo(points, true, true);
+                ctx.BeginFigure(Points[0], false, false);
+                ctx.PolyLineTo(Points, true, true);
             }
             
             context.DrawGeometry(brush, pen, geometry);
