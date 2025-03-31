@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OOPaint"
         mc:Ignorable="d"
-        Title="OOPaint" Height="550" Width="800">
+        Title="OOPaint" Height="550" Width="800" KeyDown="Window_KeyDown">
     
     <Window.Resources>
         <Style x:Key="ChooseColorButton">
@@ -17,7 +17,7 @@
         </Style>
     </Window.Resources>
     
-    <DockPanel KeyDown="OnKeyDown">
+    <DockPanel>
         <!-- Главное меню -->
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Файл">
@@ -26,8 +26,8 @@
                 <MenuItem Header="Сохранить как" />
             </MenuItem>
             <MenuItem Header="Изменить">
-                <MenuItem Header="Отмена" InputGestureText="Ctrl+Z"/>
-                <MenuItem Header="Повтор" InputGestureText="Ctrl+Alt+Z"/>
+                <MenuItem Header="Отмена" Click="UndoButton_Click" InputGestureText="Ctrl+Z"/>
+                <MenuItem Header="Повтор" Click="RedoButton_Click" InputGestureText="Ctrl+Alt+Z"/>
             </MenuItem>
         </Menu>
         

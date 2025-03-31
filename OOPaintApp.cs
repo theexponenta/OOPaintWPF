@@ -16,11 +16,14 @@ namespace OOPaint
 
         public int SelectedToolIndex { get; set;  }
 
+        public int UndoIndex { get; private set; }
+
         private List<Tool> tools;
         private CustomCanvas canvas;
 
         public OOPaintApp(CustomCanvas canvas)
         {
+            UndoIndex = -1;
             Shapes = new List<Shape>();
             tools = new List<Tool>();
             this.canvas = canvas;
@@ -32,7 +35,13 @@ namespace OOPaint
 
         public void AddShape(Shape shape)
         {
+            if (UndoIndex != Shapes.Count - 1)
+            {
+                Shapes.RemoveRange(UndoIndex + 1, Shapes.Count  - UndoIndex - 1);
+            }
+
             Shapes.Add(shape);
+            UndoIndex++;
         }
 
         public void DeleteLastShape()
@@ -42,11 +51,12 @@ namespace OOPaint
         
         public void Undo()
         {
-            
+            UndoIndex = Math.Max(UndoIndex - 1, -1);
         }
 
         public void Redo()
         {
+            UndoIndex = Math.Min(UndoIndex + 1, Shapes.Count - 1);
         }
 
         public void DispatchEvent(EventType eventType, object sender, EventArgs e)

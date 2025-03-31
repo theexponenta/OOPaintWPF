@@ -25,7 +25,6 @@ namespace OOPaint
         public MainWindow()
         {
             InitializeComponent();
-
             
             app = new OOPaintApp(DrawCanvas);
             app.AddTool(new LineTool(app));
@@ -34,7 +33,7 @@ namespace OOPaint
             app.AddTool(new PolygonTool(app));
             app.AddTool(new EllipseTool(app));
 
-            DrawCanvas.Shapes = app.Shapes;
+            DrawCanvas.App = app;
         }
 
         public void Canvas_MouseDown(object sender, MouseButtonEventArgs e)
@@ -64,11 +63,6 @@ namespace OOPaint
             {
                 app.SelectedToolIndex = ToolComboBox.SelectedIndex;
             }
-        }
-
-        private void OnKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
-        {
-            app.DispatchEvent(EventType.KEYDOWN, sender, e);
         }
 
         private void LineWidthSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -106,6 +100,31 @@ namespace OOPaint
             Brush brush = new SolidColorBrush(color);
             FillColorButton.Background = brush;
             app.SelectedFillColor = color;
+        }
+
+        public void UndoButton_Click(object sender, RoutedEventArgs e)
+        {
+            app.Undo();
+            app.Redraw();
+        }
+
+        public void RedoButton_Click(object sender, RoutedEventArgs e)
+        {
+            app.Redo();
+            app.Redraw();
+        }
+
+        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.Z && e.KeyboardDevice.Modifiers.HasFlag(ModifierKeys.Control))
+            {
+                if (e.KeyboardDevice.Modifiers.HasFlag(ModifierKeys.Alt))
+                    app.Redo();
+                else
+                    app.Undo();
+
+                app.Redraw();
+            }
         }
     }
 }

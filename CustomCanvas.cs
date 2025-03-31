@@ -10,16 +10,19 @@ namespace OOPaint
 {
     public class CustomCanvas : FrameworkElement
     {
-        public List<Shape> Shapes { get; set; } = new List<Shape>();
+        public OOPaintApp App { get; set; } = null;
         
         protected override void OnRender(DrawingContext drawingContext)
         {
+            if (App == null)
+                return;
+
             base.OnRender(drawingContext);
             Clear(drawingContext);
-            
-            foreach (Shape shape in Shapes)
+
+            for (int i = 0; i <= App.UndoIndex; i++)
             {
-                shape.Draw(drawingContext);
+                App.Shapes[i].Draw(drawingContext);
             }
         }
 
