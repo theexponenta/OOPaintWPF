@@ -2,7 +2,7 @@
 
 namespace OOPaint
 {
-    public interface Plugin
+    public interface IPlugin
     {
         string Name { get; }
         Tool getTool(OOPaintApp app);
