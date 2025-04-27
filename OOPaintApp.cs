@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using OOPaint.Shapes;
 using System.Windows.Media;
+using Newtonsoft.Json;
 using OOPaint.Tools;
 
 
@@ -9,7 +11,14 @@ namespace OOPaint
 {
     public class OOPaintApp
     {
-        public List<Shape> Shapes { get; private set; }
+        public List<Shape> Shapes
+        {
+            get { return shapes; }
+            private set { shapes = value; UndoIndex = value.Count - 1; }
+        }
+        
+        private List<Shape> shapes;
+
         public Color SelectedStrokeColor { get; set; }
         public Color SelectedFillColor { get;  set; }
         public int SelectedLineWidth { get; set; }
@@ -72,6 +81,26 @@ namespace OOPaint
         public void AddTool(Tool tool)
         {
             tools.Add(tool);
+        }
+
+        public void SaveToFile(String fileName)
+        {
+            var settings = new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.All
+            };
+            
+            File.WriteAllText(fileName, JsonConvert.SerializeObject(shapes, settings));
+        }
+
+        public void LoadFromFile(string fileName)
+        {
+            var settings = new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.All
+            };
+            
+            Shapes = JsonConvert.DeserializeObject<List<Shape>>(File.ReadAllText(fileName), settings);
         }
     }
 }

@@ -17,7 +17,7 @@ namespace OOPaint.Shapes
 
         public override void Draw(DrawingContext context)
         {
-            Pen pen = new Pen(new SolidColorBrush(this.strokeColor), this.lineWidth);
+            Pen pen = new Pen(new SolidColorBrush(this.StrokeColor), this.LineWidth);
             Brush brush = new SolidColorBrush(Colors.Transparent);
             
             StreamGeometry geometry = new StreamGeometry();
@@ -28,16 +28,6 @@ namespace OOPaint.Shapes
             }
             
             context.DrawGeometry(brush, pen, geometry);
-        }
-
-        public override byte[] Serialize()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void Deserialize(byte[] data)
-        {
-            throw new NotImplementedException();
         }
     }
 }

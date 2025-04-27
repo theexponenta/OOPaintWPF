@@ -125,6 +125,27 @@ namespace OOPaint
 
                 app.Redraw();
             }
+            
+            app.DispatchEvent(EventType.KEYDOWN, sender, e);
+        }
+
+        public void SaveAsButton_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            if (saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                app.SaveToFile(saveFileDialog.FileName);
+            }
+        }
+
+        public void OpenButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                app.LoadFromFile(openFileDialog.FileName);
+                app.Redraw();
+            }
         }
     }
 }

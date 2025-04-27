@@ -21,9 +21,9 @@
         <!-- Главное меню -->
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Файл">
-                <MenuItem Header="Открыть" />
+                <MenuItem Header="Открыть" Click="OpenButton_Click" />
                 <MenuItem Header="Сохранить" />
-                <MenuItem Header="Сохранить как" />
+                <MenuItem Header="Сохранить как" Click="SaveAsButton_Click" />
             </MenuItem>
             <MenuItem Header="Изменить">
                 <MenuItem Header="Отмена" Click="UndoButton_Click" InputGestureText="Ctrl+Z"/>

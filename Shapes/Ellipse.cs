@@ -19,21 +19,12 @@ namespace OOPaint.Shapes
 
         public override void Draw(DrawingContext context)
         {
-            Brush brush = new SolidColorBrush(this.fillColor);
-            Pen pen = new Pen(new SolidColorBrush(this.strokeColor), this.lineWidth);
+            Brush brush = new SolidColorBrush(this.FillColor);
+            Pen pen = new Pen(new SolidColorBrush(this.StrokeColor), this.LineWidth);
             
             Point center = new Point((TopLeft.X + BottomRight.X) / 2, (TopLeft.Y + BottomRight.Y) / 2);
             context.DrawEllipse(brush, pen, center, Math.Abs(BottomRight.X - TopLeft.X) / 2, Math.Abs(BottomRight.Y - TopLeft.Y) / 2);
         }
-
-        public override byte[] Serialize()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void Deserialize(byte[] data)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

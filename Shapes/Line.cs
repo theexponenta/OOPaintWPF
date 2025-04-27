@@ -18,19 +18,10 @@ namespace OOPaint.Shapes
 
         public override void Draw(DrawingContext context)
         {
-            Brush brush = new SolidColorBrush(this.strokeColor);
-            Pen pen = new Pen(brush, this.lineWidth);
+            Brush brush = new SolidColorBrush(this.StrokeColor);
+            Pen pen = new Pen(brush, this.LineWidth);
             context.DrawLine(pen, Point1, Point2);
         }
-
-        public override byte[] Serialize()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void Deserialize(byte[] data)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }
