@@ -6,6 +6,10 @@ using System.Windows.Media;
 using OOPaint.Shapes;
 
 
+using Brush = System.Windows.Media.Brush;
+using Pen = System.Windows.Media.Pen;
+
+
 namespace OOPaint
 {
     public class CustomCanvas : FrameworkElement

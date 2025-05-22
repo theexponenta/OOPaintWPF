@@ -1,6 +1,13 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Media;
+using Shared;
+
+
+using Brush = System.Windows.Media.Brush;
+using Pen = System.Windows.Media.Pen;
+using Color = System.Windows.Media.Color;
+using Point = System.Windows.Point;
 
 
 namespace OOPaint.Shapes

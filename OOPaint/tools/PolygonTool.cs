@@ -2,6 +2,12 @@
 using System.Windows;
 using System.Windows.Input;
 using OOPaint.Shapes;
+using Shared;
+
+
+using Point = System.Windows.Point;
+using KeyEventArgs = System.Windows.Input.KeyEventArgs;
+using MouseEventArgs = System.Windows.Input.MouseEventArgs;
 
 
 namespace OOPaint.Tools
@@ -18,7 +24,7 @@ namespace OOPaint.Tools
         private PolygonToolState state = PolygonToolState.INITIAL;
         private Polygon polygon = null;
 
-        public PolygonTool(OOPaintApp app) : base(app)
+        public PolygonTool(IPaintApp app) : base(app)
         {
             MouseDownEvent += OnMouseDown;
             MouseMoveEvent += OnMouseMove;

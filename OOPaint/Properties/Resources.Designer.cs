@@ -59,5 +59,15 @@ namespace OOPaint.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Byte[].
+        /// </summary>
+        internal static byte[] line_tool {
+            get {
+                object obj = ResourceManager.GetObject("line_tool", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

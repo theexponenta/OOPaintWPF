@@ -29,37 +29,33 @@
                 <MenuItem Header="Отмена" Click="UndoButton_Click" InputGestureText="Ctrl+Z"/>
                 <MenuItem Header="Повтор" Click="RedoButton_Click" InputGestureText="Ctrl+Alt+Z"/>
             </MenuItem>
+            <MenuItem Header="Загрузить плагин" Click="LoadPlugin_Click"></MenuItem>
         </Menu>
         
         <StackPanel DockPanel.Dock="Left" Width="180" Background="LightGray">
             <ComboBox Name="ToolComboBox" SelectedIndex="0" Margin="5" SelectionChanged="ToolComboBox_OnSelectionChanged">
                 <ComboBoxItem Tag="LineTool">
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="res/line_tool.png" Margin="0,0,10,0"/>
                         <TextBlock>Отрезок</TextBlock>
                     </StackPanel>
                 </ComboBoxItem>
                 <ComboBoxItem Tag="PolylineTool">
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="res/polyline_tool.png" Margin="0,0,10,0"/>
                         <TextBlock>Ломаная</TextBlock>
                     </StackPanel>
                 </ComboBoxItem>
                 <ComboBoxItem Tag="RectangleTool">
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="res/rectangle_tool.png" Margin="0,0,10,0"/>
                         <TextBlock>Прямоугольник</TextBlock>
                     </StackPanel>
                 </ComboBoxItem>
                 <ComboBoxItem>
                     <StackPanel Orientation="Horizontal" Tag="PolygonTool">
-                        <Image Source="res/polygon_tool.png" Margin="0,0,10,0"/>
                         <TextBlock>Многоугольник</TextBlock>
                     </StackPanel>
                 </ComboBoxItem>
                 <ComboBoxItem>
                     <StackPanel Orientation="Horizontal" Tag="EllipseTool">
-                        <Image Source="res/oval_tool.png" Margin="0,0,10,0"/>
                         <TextBlock>Эллипс</TextBlock>
                     </StackPanel>
                 </ComboBoxItem>

@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
+using Point = System.Windows.Point;
+
 namespace OOPaint
 {
     public static class Utils

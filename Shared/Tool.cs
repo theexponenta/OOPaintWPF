@@ -1,19 +1,22 @@
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-
-namespace OOPaint.Tools
+namespace Shared
 {
     public class Tool
     {
-        protected OOPaintApp app;
-        
+        protected IPaintApp app;
+
         protected event EventHandler MouseDownEvent;
         protected event EventHandler MouseUpEvent;
         protected event EventHandler MouseClickEvent;
         protected event EventHandler MouseMoveEvent;
         protected event EventHandler KeyDownEvent;
-        
-        public Tool(OOPaintApp app)
+
+        public Tool(IPaintApp app)
         {
             this.app = app;
         }
@@ -39,7 +42,7 @@ namespace OOPaint.Tools
                         MouseClickEvent(sender, e);
                     break;
                 case EventType.KEYDOWN:
-                    if (KeyDownEvent != null) 
+                    if (KeyDownEvent != null)
                         KeyDownEvent(sender, e);
                     break;
             }

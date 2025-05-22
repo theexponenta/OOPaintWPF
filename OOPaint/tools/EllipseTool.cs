@@ -3,6 +3,11 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Shapes;
 using OOPaint.Shapes;
+using Shared;
+
+
+using Point = System.Windows.Point;
+using MouseEventArgs = System.Windows.Input.MouseEventArgs;
 
 
 namespace OOPaint.Tools
@@ -19,7 +24,7 @@ namespace OOPaint.Tools
         private Shapes.Ellipse ellipse = null;
         private Point startPoint;
 
-        public EllipseTool(OOPaintApp app) : base(app)
+        public EllipseTool(IPaintApp app) : base(app)
         {
             MouseDownEvent += OnMouseDown;
             MouseMoveEvent += OnMouseMove;

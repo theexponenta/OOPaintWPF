@@ -5,11 +5,16 @@ using OOPaint.Shapes;
 using System.Windows.Media;
 using Newtonsoft.Json;
 using OOPaint.Tools;
+using Shared;
+
+
+using Color = System.Windows.Media.Color;
 
 
 namespace OOPaint
 {
-    public class OOPaintApp
+
+    public class OOPaintApp : IPaintApp
     {
         public List<Shape> Shapes
         {

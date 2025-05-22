@@ -2,6 +2,12 @@ using System;
 using System.Windows;
 using System.Windows.Input;
 using OOPaint.Shapes;
+using Shared;
+
+
+using Point = System.Windows.Point;
+using KeyEventArgs = System.Windows.Input.KeyEventArgs;
+using MouseEventArgs = System.Windows.Input.MouseEventArgs;
 
 
 namespace OOPaint.Tools
@@ -17,7 +23,7 @@ namespace OOPaint.Tools
         private PolylineToolState state = PolylineToolState.INITIAL;
         private Polyline polyline = null;
         
-        public PolylineTool(OOPaintApp app) : base(app)
+        public PolylineTool(IPaintApp app) : base(app)
         {
             MouseDownEvent += OnMouseDown;
             MouseMoveEvent += OnMouseMove;

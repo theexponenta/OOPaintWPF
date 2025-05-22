@@ -4,6 +4,7 @@ using System.Windows.Media.Imaging;
 using OOPaint.Shapes;
 using System.Windows.Input;
 using OOPaint.Tools;
+using Shared;
 
 
 namespace OOPaint
@@ -13,6 +14,8 @@ namespace OOPaint
     using System.Windows.Forms;
     using System.Windows.Input;
     using System.Windows.Media;
+
+    using MessageBox = System.Windows.Forms.MessageBox;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -145,6 +148,47 @@ namespace OOPaint
             {
                 app.LoadFromFile(openFileDialog.FileName);
                 app.Redraw();
+            }
+        }
+
+        private void AddToolButton(string toolName)
+        {
+            /*Image image = new Image
+            {
+                Source = new BitmapImage(new Uri("pack://application:,,,/res/oval_tool.png")),
+                Margin = new Thickness(0, 0, 10, 0),
+                Width = 16, // при необходимости
+                Height = 16
+            };*/
+
+            TextBlock textBlock = new TextBlock();
+            textBlock.Text = toolName;
+
+            StackPanel stackPanel = new StackPanel();
+            stackPanel.Orientation = System.Windows.Controls.Orientation.Horizontal;
+            //stackPanel.Children.Add(image);
+            stackPanel.Children.Add(textBlock);
+
+            ComboBoxItem comboBoxItem = new ComboBoxItem();
+            comboBoxItem.Content = stackPanel;
+
+            ToolComboBox.Items.Add(comboBoxItem);
+        }
+
+        private void LoadPlugin_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                IPlugin plugin = PluginLoader.GetPlugin(openFileDialog.FileName);
+                if (plugin == null)
+                {
+                    MessageBox.Show("Ошибка загрузки плагина");
+                    return;
+                }
+
+                app.AddTool(plugin.GetTool(app));
+                AddToolButton(plugin.Name);
             }
         }
     }

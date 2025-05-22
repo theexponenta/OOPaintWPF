@@ -2,6 +2,13 @@ using System;
 using System.Windows;
 using System.Windows.Input;
 using OOPaint.Shapes;
+using Shared;
+
+
+using Point = System.Windows.Point;
+using KeyEventArgs = System.Windows.Input.KeyEventArgs;
+using MouseEventArgs = System.Windows.Input.MouseEventArgs;
+
 
 namespace OOPaint.Tools
 {
@@ -17,7 +24,7 @@ namespace OOPaint.Tools
         private LineToolState state = LineToolState.INITIAL;
         private Line line = null;
         
-        public LineTool(OOPaintApp app) : base(app)
+        public LineTool(IPaintApp app) : base(app)
         {
             MouseDownEvent += OnMouseDown;
             MouseMoveEvent += OnMouseMove;
